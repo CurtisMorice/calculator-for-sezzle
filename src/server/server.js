@@ -26,13 +26,13 @@ const pool = mysql.createPool({
 // });
 
 
-if (process.env.NODE_ENV === "production") {
-  app.use(express.static("build"));
+// if (process.env.NODE_ENV === "production") {
+//   app.use(express.static("build"));
 
-  app.get("*", (req, res) => {
-    res.sendFile(path.resolve(__dirname, "build", "index.html"));
-  });
-}
+//   app.get("*", (req, res) => {
+//     res.sendFile(path.resolve(__dirname, "build", "index.html"));
+//   });
+// }
 
 app.get('/api/calculations', (req, res) => {
   pool.query(`SELECT * FROM ${ table } ORDER BY created_at DESC LIMIT 10`, (err, rows) => {
