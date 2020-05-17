@@ -2,27 +2,49 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 ### My start command was:
  npx create-react-app calculator-sezzle <br />
- yarn add concurrently dotenv express mysql nodemon webpack<br />
+ npm add concurrently dotenv express mysql nodemon webpack<br />
 
 ## Available Scripts
 
 ```
   "scripts": {
-    "start": "react-scripts start",
+    "start": "nodemon ./src/server/server.js",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "client": "react-scripts start",
     "server": "nodemon -r dotenv/config ./src/server/server.js",
-    "dev": "concurrently \"yarn run server\" \"yarn run client\""
+    "dev": "concurrently \"npm run server\" \"npm run client\""
   },
 ```
 
 ### UP AND RUNNING
 
+## HEROKU
+With HEROKU I am using ClearDB MySQL for database config.<br />
+
+Set up a TABLE with the name "calulations" and the COLUMNS should be number1, operator, number2, total, and created_at. or C & P into a workbench with : <br />
+
+```
+
+mysql> CREATE TABLE IF NOT EXISTS `calculations` (
+  id int(11) NOT NULL PRIMARY KEY AUTO_INCREMENT,
+  number1 INT NOT NULL,
+  operator varchar(255) NOT NULL,
+  number2 INT NOT NULL,
+  total INT NOT NULL,
+  created_at varchar(255) NOT NULL,
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+```
+
+then you can populate a row and after submitting a calculation throught the app it should return both values in the Calculations List
+
+## Localy
+
 OK , so I used concurrently ( a package for running start & server "concurrently") to get this up and running locally so if you have a database set up you can run:<br />
 
-### yarn run dev
+### npm run dev
 
 or
 
@@ -69,12 +91,12 @@ Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 The page will reload if you make edits.<br />
 You will also see any lint errors in the console.
 
-### `yarn test`
+### `npm test`
 
 Launches the test runner in the interactive watch mode.<br />
 See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
 
-### `yarn build`
+### `npm build`
 
 Builds the app for production to the `build` folder.<br />
 It correctly bundles React in production mode and optimizes the build for the best performance.
@@ -84,7 +106,7 @@ Your app is ready to be deployed!
 
 See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
 
-### `yarn eject`
+### `npm eject`
 
 **Note: this is a one-way operation. Once you `eject`, you can’t go back!**
 
@@ -120,6 +142,6 @@ This section has moved here: https://facebook.github.io/create-react-app/docs/ad
 
 This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
 
-### `yarn build` fails to minify
+### `npm build` fails to minify
 
 This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify

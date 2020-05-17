@@ -32,11 +32,11 @@ export function Calculator() {
   return (
     <CalculatorStyles>
       <div className="display">
-        <h1 style={{ color: "#fff" }}>Calculator-Challenge for Sezzle</h1>
+        <h1 style={{ color: "#fff" }}>Calculator-Challenge for Sezzle by Curtis Morice</h1>
         <Display />
       </div>
       <div className="outer-wrapper">
-        <div className="calculator-wrapper" style={{ display: "flex", margin: "10px 20px" }}>
+        <div className="calculator-wrapper" style={{ display: "flex", margin: "20px" }}>
           <div className="number-pad">
             <ClearButton />
             <BackButton />

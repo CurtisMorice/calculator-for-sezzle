@@ -18,6 +18,7 @@ grid-template-columns: 1fr;
   display: flex;
  @media (max-width: 500px) {
    flex-direction: column;
+  padding-bottom: 50px;
  }
 }
 .display {
@@ -54,6 +55,7 @@ grid-template-columns: 1fr;
   @media (max-width: 500px) {
     width: 100%;
     margin: 0;
+    grid-gap: 15px;
   }
 
   button {
@@ -75,7 +77,10 @@ grid-template-columns: 1fr;
       border: 3px solid #dfe6e9;
       font-weight: 500;
     }
-  }
+    @media (max-width: 500px) {
+      height: 70px;
+      font-size: 2.5rem;
+    }
 
   button.function-button {
     background-color: #2d3436;
