@@ -1,7 +1,7 @@
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ### My start command was:
- npx create-react-app calculator-sezzle
+ npx create-react-app calculator-sezzle abs
  yarn add concurrently dotenv express mysql nodemon webpack
 
 ## Available Scripts
