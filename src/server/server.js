@@ -16,6 +16,14 @@ const pool = mysql.createPool({
   database: process.env.MYSQL_DB
 });
 
+if (process.env.NODE_ENV === "production") {
+  app.use(express.static("build"));
+
+  app.get("*", (req, res) => {
+    res.sendFile(path.resolve(__dirname, "build", "index.html"));
+  });
+}
+
 app.get('/api/calculations', (req, res) => {
   pool.query(`SELECT * FROM ${ table } ORDER BY created_at DESC LIMIT 10`, (err, rows) => {
     if (err) {
@@ -25,6 +33,7 @@ app.get('/api/calculations', (req, res) => {
     }
   });
 });
+
 
 app.post('/api/calculations', (req, res) => {
   console.log(req.body);
