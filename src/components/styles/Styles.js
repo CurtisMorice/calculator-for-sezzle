@@ -11,6 +11,9 @@ grid-template-columns: 1fr;
 @media (max-width: 500px) {
   max-width: 90%;
   padding: 5%;
+  .calculator-wrapper {
+   flex-direction: column
+  }
 }
 
 .display {
@@ -87,7 +90,8 @@ grid-template-columns: 1fr;
 
 `;
 
-export const DisplayStyles = styled.div` display: grid;
+export const DisplayStyles = styled.div`
+display: grid;
 grid-template-rows: 90px 30px;
 grid-template-columns: 1fr;
 border: 4px solid white;
@@ -101,6 +105,7 @@ background: azure;
   width: 95%;
   grid-template-rows: 60px 40px;
 }
+
 
 h2,
 p {
@@ -138,4 +143,24 @@ p.long-stored-display {
   font-size: 0.5rem;
 }
 
-`;
+`
+export const CalcListStyle = styled.div`
+border: 4px solid white;
+max-width: 450px;
+margin: 10px 50px;
+align-items: center;
+border-radius: 20px;
+background: azure;
+width: 450px;
+height: 500px;
+@media (max-width: 500px) {
+  width : 90%;
+  display: flex;
+  flex-direction: column;
+}
+h1 {
+  width: 100%;
+  text-align: center;
+}
+`
+  ;

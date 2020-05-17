@@ -35,7 +35,7 @@ export function Calculator() {
         <h1 style={{ color: "#fff" }}>Calculator-Challenge for Sezzle</h1>
         <Display />
       </div>
-      <div style={{ display: "flex", width: "80%", margin: "50px" }}>
+      <div className="calculator-wrapper" style={{ display: "flex", width: "80%", margin: "50px" }}>
         <div className="number-pad">
           <ClearButton />
           <BackButton />
