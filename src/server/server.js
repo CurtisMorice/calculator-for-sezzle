@@ -15,7 +15,7 @@ const pool = mysql.createPool({
   host: dbConfig.HOST,
   user: dbConfig.USER,
   password: dbConfig.PW,
-  database: dbConfig.DB
+  database: dbConfig.DB,
   port: dbConfig.PORT
 });
 //local
