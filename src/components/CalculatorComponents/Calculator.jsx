@@ -36,7 +36,7 @@ export function Calculator() {
         <Display />
       </div>
       <div className="outer-wrapper">
-        <div className="calculator-wrapper" style={{ display: "flex", margin: "20px" }}>
+        <div className="calculator-wrapper">
           <div className="number-pad">
             <ClearButton />
             <BackButton />
