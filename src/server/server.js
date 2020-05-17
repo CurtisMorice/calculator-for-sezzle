@@ -1,9 +1,9 @@
 const express = require('express');
-require('dotenv').config();
 const mysql = require('mysql');
 const bodyParser = require('body-parser');
 // const path = require('path');
-// const dbConfig = require('../db/db-config');
+const dbConfig = require('../db/db-config');
+require('dotenv').config();
 
 const app = express();
 const table = 'calculations';
@@ -11,20 +11,19 @@ const table = 'calculations';
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
-// const pool = mysql.createPool({
-//   host: dbConfig.HOST,
-//   user: dbConfig.USER,
-//   password: dbConfig.PW,
-//   database: dbConfig.DB,
-//   port: dbConfig.PORT
-// });
-//local
 const pool = mysql.createPool({
-  host: process.env.MYSQL_HOST,
-  user: process.env.MYSQL_USER,
-  password: process.env.MYSQL_PW,
-  database: process.env.MYSQL_DB
+  host: dbConfig.HOST,
+  user: dbConfig.USER,
+  password: dbConfig.PASSWORD,
+  database: dbConfig.DB
 });
+//local
+// const pool = mysql.createPool({
+//   host: process.env.MYSQL_HOST,
+//   user: process.env.MYSQL_USER,
+//   password: process.env.MYSQL_PW,
+//   database: process.env.MYSQL_DB
+// });
 
 
 // if (process.env.NODE_ENV === "production") {
@@ -34,8 +33,9 @@ const pool = mysql.createPool({
 //     res.sendFile(path.resolve(__dirname, "build", "index.html"));
 //   });
 // }
+// Static Build
+app.use(express.static("build"));
 
-// app.use(express.static("build"));
 app.get('/api/calculations', (req, res) => {
   pool.query(`SELECT * FROM ${ table } ORDER BY created_at DESC LIMIT 10`, (err, rows) => {
     if (err) {
