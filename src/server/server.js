@@ -16,8 +16,6 @@ const pool = mysql.createPool({
   database: process.env.MYSQL_DB
 });
 
-
-
 app.get('/api/calculations', (req, res) => {
   pool.query(`SELECT * FROM ${ table } ORDER BY created_at DESC LIMIT 10`, (err, rows) => {
     if (err) {
@@ -27,6 +25,7 @@ app.get('/api/calculations', (req, res) => {
     }
   });
 });
+
 app.post('/api/calculations', (req, res) => {
   console.log(req.body);
   let calc_obj = req.body;
@@ -37,8 +36,7 @@ app.post('/api/calculations', (req, res) => {
     res.send(JSON.stringify(result));
   });
 });
-
-app.set('port', (process.env.PORT || 8000));
-app.listen(app.get('port'), () => {
-  console.log(`App server listening to port ${ process.env.PORT }`);
+const PORT = process.env.PORT || 8000;
+app.listen(PORT, () => {
+  console.log(`App server listening to port ${ PORT }`);
 });
