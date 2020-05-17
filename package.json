@@ -31,7 +31,7 @@
     "eject": "react-scripts eject",
     "client": "react-scripts start",
     "server": "nodemon -r dotenv/config ./src/server/server.js",
-    "dev": "concurrently \"yarn run server\" \"yarn run client\"",
+    "dev": "concurrently \"yarn run server\" \"yarn run client\""
   },
   "eslintConfig": {
     "extends": "react-app"
