@@ -1,9 +1,9 @@
 const express = require('express');
+require('dotenv').config();
 const mysql = require('mysql');
 const bodyParser = require('body-parser');
-const path = require('path');
+// const path = require('path');
 const dbConfig = require('../db/db-config');
-require('dotenv').config();
 
 const app = express();
 const table = 'calculations';
@@ -16,6 +16,7 @@ const pool = mysql.createPool({
   user: dbConfig.USER,
   password: dbConfig.PW,
   database: dbConfig.DB
+  port: dbConfig.PORT
 });
 //local
 // const pool = mysql.createPool({
@@ -27,13 +28,14 @@ const pool = mysql.createPool({
 
 
 // if (process.env.NODE_ENV === "production") {
-//   app.use(express.static("build"));
+//
 
 //   app.get("*", (req, res) => {
 //     res.sendFile(path.resolve(__dirname, "build", "index.html"));
 //   });
 // }
 
+app.use(express.static("build"));
 app.get('/api/calculations', (req, res) => {
   pool.query(`SELECT * FROM ${ table } ORDER BY created_at DESC LIMIT 10`, (err, rows) => {
     if (err) {
