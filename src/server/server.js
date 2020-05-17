@@ -4,7 +4,6 @@ const bodyParser = require('body-parser');
 require('dotenv').config();
 
 const app = express();
-const port = 8000;
 const table = 'calculations';
 
 app.use(bodyParser.json());
@@ -17,9 +16,7 @@ const pool = mysql.createPool({
   database: process.env.MYSQL_DB
 });
 
-app.get('/', (req, res) => {
-  res.redirect('/calculations');
-});
+
 
 app.get('/api/calculations', (req, res) => {
   pool.query(`SELECT * FROM ${ table } ORDER BY created_at DESC LIMIT 10`, (err, rows) => {
@@ -41,6 +38,7 @@ app.post('/api/calculations', (req, res) => {
   });
 });
 
-app.listen(port, () => {
-  console.log(`App server listening to port ${ port }`);
+app.set('port', (process.env.PORT || 8000));
+app.listen(app.get('port'), () => {
+  console.log(`App server listening to port ${ process.env.PORT }`);
 });
