@@ -34,8 +34,6 @@ or
  "proxy": "http://localhost:8000",
 ```
 
-### `yarn start`
-
 ### ABOUT THE PROJECT
 
 I built the calculator using React, Typescript, WebPack, Nodejs , Express, and MySQL. I also used dotenv, concurrently and styled-components (dev),<br />
@@ -125,13 +123,3 @@ This section has moved here: https://facebook.github.io/create-react-app/docs/de
 ### `yarn build` fails to minify
 
 This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
-
-
-### DUMMY DATA FOR THE DATABASE
-
-INSERT INTO `calculator_challenge`.`calculations` (`id`, `number1`, `number2`, `operator`, `total`) VALUES ('1', '22', '45', '+', '67');
-INSERT INTO `calculator_challenge`.`calculations` (`id`, `number1`, `number2`, `operator`, `total`) VALUES ('2', '2', '3', '_', '6');
-INSERT INTO `calculator_challenge`.`calculations` (`id`, `number1`, `number2`, `operator`, `total`) VALUES ('3', '9', '3', '/', '3');
-INSERT INTO `calculator_challenge`.`calculations` (`id`, `number1`, `number2`, `operator`, `total`) VALUES ('4', '10', '5', '-', '5');
-INSERT INTO `calculator_challenge`.`calculations` (`id`, `number1`, `number2`, `operator`, `total`) VALUES ('5', '20', '2000', '+', '2020');
-INSERT INTO `calculator_challenge`.`calculations` (`id`, `number1`, `number2`, `operator`, `total`) VALUES ('6', '100', '200', '_', '20000');
