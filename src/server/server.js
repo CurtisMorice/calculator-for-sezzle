@@ -12,10 +12,10 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
 const pool = mysql.createPool({
-  host: dbConfig.MYSQL_HOST,
-  user: dbConfig.MYSQL_USER,
-  password: dbConfig.MYSQL_PW,
-  database: dbConfig.MYSQL_DB
+  host: dbConfig.HOST,
+  user: dbConfig.USER,
+  password: dbConfig.PW,
+  database: dbConfig.DB
 });
 //local
 // const pool = mysql.createPool({
@@ -24,6 +24,7 @@ const pool = mysql.createPool({
 //   password: process.env.MYSQL_PW,
 //   database: process.env.MYSQL_DB
 // });
+
 
 if (process.env.NODE_ENV === "production") {
   app.use(express.static("build"));

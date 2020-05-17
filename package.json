@@ -24,13 +24,13 @@
     "webpack": "4.43.0"
   },
   "scripts": {
-    "start": "node src/server/server.js",
+    "start": "node ./src/server/server.js",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "client": "react-scripts start",
     "server": "nodemon -r dotenv/config ./src/server/server.js",
-    "dev": "concurrently \"yarn run server\" \"yarn run client\""
+    "dev": "concurrently \"npm run server\" \"npm run client\""
   },
   "eslintConfig": {
     "extends": "react-app"
