@@ -17,7 +17,9 @@ const pool = mysql.createPool({
   database: process.env.MYSQL_DB
 });
 
-
+app.get('/', (req, res) => {
+  res.redirect('/calculations');
+});
 app.get('/api/calculations', (req, res) => {
   pool.query(`SELECT * FROM ${ table } ORDER BY created_at DESC LIMIT 10`, (err, rows) => {
     if (err) {
