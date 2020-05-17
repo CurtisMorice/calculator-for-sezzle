@@ -1,0 +1,172 @@
+import React, { useState } from "react";
+export const NumberContext = React.createContext(0);
+
+
+export function NumberProvider(props) {
+  const [number, setNumber] = useState("");
+  const [storedNumber, setStoredNumber] = useState("");
+  const [functionType, setFunctionType] = useState("");
+  const [calculations, setCalculations] = useState([]);
+
+  const handleSetDisplayValue = (num) => {
+    if ((!number.includes(".") || num !== ".") && number.length < 8) {
+      setNumber(`${ (number + num).replace(/^0+/, "") }`);
+    }
+  };
+
+  const handleSetStoredValue = () => {
+    setStoredNumber(number);
+    setNumber("");
+  };
+
+  const handleClearValue = () => {
+    setNumber("");
+    setStoredNumber("");
+    setFunctionType("");
+  };
+
+  const handleBackButton = () => {
+    if (number !== "") {
+      const deletedNumber = number.slice(0, number.length - 1);
+      setNumber(deletedNumber);
+    }
+  };
+
+  const handleSetCalcFunction = (type) => {
+    if (number) {
+      setFunctionType(type);
+      handleSetStoredValue();
+    }
+    if (storedNumber) {
+      setFunctionType(type);
+    }
+  };
+
+  const handleToggleNegative = () => {
+    if (number) {
+      if (number > 0) {
+        setNumber(`-${ number }`);
+      } else {
+        const positiveNumber = number.slice(1);
+        setNumber(positiveNumber);
+      }
+    } else if (storedNumber > 0) {
+      setStoredNumber(`-${ storedNumber }`);
+    } else {
+      const positiveNumber = storedNumber.slice(1);
+      setStoredNumber(positiveNumber);
+    }
+  };
+
+  const doMath = () => {
+    let finalNumber;
+    let calc_obj;
+    let date = new Date();
+    if (number && storedNumber) {
+      switch (functionType) {
+        case "+":
+          setStoredNumber(
+            `${
+            Math.round(
+              `${ (parseFloat(storedNumber) + parseFloat(number)) * 100 }`
+            ) / 100
+            }`
+          );
+
+          finalNumber = finalNumber = parseInt(storedNumber) + parseInt(number);
+          calc_obj = { number1: parseInt(storedNumber), operator: functionType, number2: parseInt(number), total: finalNumber, created_at: date };
+          console.log("adding", finalNumber);
+          break;
+        case "-":
+          setStoredNumber(
+            `${
+            Math.round(
+              `${ (parseFloat(storedNumber) - parseFloat(number)) * 1000 }`
+            ) / 1000
+            }`
+          );
+          finalNumber = parseInt(storedNumber) - parseInt(number);
+          calc_obj = { number1: parseInt(storedNumber), operator: functionType, number2: parseInt(number), total: finalNumber, created_at: date };
+          console.log(finalNumber);
+          break;
+        case "/":
+          setStoredNumber(
+            `${
+            Math.round(
+              `${ (parseFloat(storedNumber) / parseFloat(number)) * 1000 }`
+            ) / 1000
+            }`
+          );
+          finalNumber = parseInt(storedNumber) / parseInt(number);
+          calc_obj = { number1: parseInt(storedNumber), operator: functionType, number2: parseInt(number), total: finalNumber, created_at: date };
+          console.log(finalNumber);
+          break;
+        case "*":
+          setStoredNumber(
+            `${
+            Math.round(
+              `${ parseFloat(storedNumber) * parseFloat(number) * 1000 }`
+            ) / 1000
+            }`
+          );
+          finalNumber = parseInt(storedNumber) * parseInt(number);
+          calc_obj = { number1: parseInt(storedNumber), operator: functionType, number2: parseInt(number), total: finalNumber, created_at: date };
+          console.log(finalNumber);
+          break;
+        default:
+          break;
+      }
+      setNumber("");
+    }
+
+    console.log(calc_obj);
+
+
+    fetch('/api/calculations', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(calc_obj)
+    }).then((response) => {
+      if (response.status >= 400) {
+        throw new Error("Bad response from server");
+      }
+      getCalculations();
+      return response.json();
+    }).then((data) => {
+      console.log('data', data);
+    }).catch((err) => {
+      console.log(err)
+    });
+  };
+
+  const getCalculations = async () => {
+    console.log("getCalculations()");
+    let result = await fetch(`/api/calculations`);
+    console.log("getCalculations()");
+    let calc_obj = await result.json();
+    console.log("CAlc_obj", calc_obj, 2);
+    setCalculations(calc_obj);
+  }
+
+  return (
+    <NumberContext.Provider
+      value={{
+        doMath,
+        functionType,
+        handleBackButton,
+        handleClearValue,
+        handleSetCalcFunction,
+        handleSetDisplayValue,
+        handleSetStoredValue,
+        handleToggleNegative,
+        calculations,
+        number,
+        storedNumber,
+        setNumber
+      }}
+    >
+      {props.children}
+    </NumberContext.Provider>
+  );
+};
+

@@ -1,8 +1,12 @@
 import React from 'react';
-import { SampleComponent } from '../components'
+import { Calculator } from 'components';
+import { NumberProvider } from 'components';
 function App() {
   return (
-    <SampleComponent />
+
+    < NumberProvider>
+      <Calculator />
+    </NumberProvider>
   );
 }
 
