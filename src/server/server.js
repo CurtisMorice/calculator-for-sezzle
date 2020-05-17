@@ -1,7 +1,8 @@
 const express = require('express');
 const mysql = require('mysql');
 const bodyParser = require('body-parser');
-const path = require('path')
+const path = require('path');
+const dbConfig = require('../db/db-config');
 require('dotenv').config();
 
 const app = express();
@@ -11,11 +12,18 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
 const pool = mysql.createPool({
-  host: process.env.MYSQL_HOST,
-  user: process.env.MYSQL_USER,
-  password: process.env.MYSQL_PW,
-  database: process.env.MYSQL_DB
+  host: dbConfig.MYSQL_HOST,
+  user: dbConfig.MYSQL_USER,
+  password: dbConfig.MYSQL_PW,
+  database: dbConfig.MYSQL_DB
 });
+//local
+// const pool = mysql.createPool({
+//   host: process.env.MYSQL_HOST,
+//   user: process.env.MYSQL_USER,
+//   password: process.env.MYSQL_PW,
+//   database: process.env.MYSQL_DB
+// });
 
 if (process.env.NODE_ENV === "production") {
   app.use(express.static("build"));
