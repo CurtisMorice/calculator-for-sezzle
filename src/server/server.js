@@ -47,7 +47,7 @@ app.get('/api/calculations', (req, res) => {
 app.post('/api/calculations', (req, res) => {
   console.log(req.body);
   let calc_obj = req.body;
-  let queryText = `INSERT INTO calculator_challenge.calculations(number1, operator, number2, total, created_at)VALUES(${ calc_obj.number1 }, "${ calc_obj.operator }", ${ calc_obj.number2 }, ${ calc_obj.total }, "${ calc_obj.created_at }");`;
+  let queryText = `INSERT INTO calculations(number1, operator, number2, total, created_at)VALUES(${ calc_obj.number1 }, "${ calc_obj.operator }", ${ calc_obj.number2 }, ${ calc_obj.total }, "${ calc_obj.created_at }");`;
 
   pool.query(queryText, (error, result, fields) => {
     if (error) throw error;
