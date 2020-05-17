@@ -1,11 +1,12 @@
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ### My start command was:
- npx create-react-app calculator-sezzle abs
- yarn add concurrently dotenv express mysql nodemon webpack
+ npx create-react-app calculator-sezzle <br />
+ yarn add concurrently dotenv express mysql nodemon webpack<br />
 
 ## Available Scripts
 
+```
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
@@ -15,10 +16,12 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
     "server": "nodemon -r dotenv/config ./src/server/server.js",
     "dev": "concurrently \"yarn run server\" \"yarn run client\""
   },
+```
 
 ### UP AND RUNNING
 
-OK , so I used concurrently ( a package for running start & server "concurrently") to get this up and running locally so if you have a database set up you can run:
+OK , so I used concurrently ( a package for running start & server "concurrently") to get this up and running locally so if you have a database set up you can run:<br />
+
 ### yarn run dev
 
 or
@@ -27,26 +30,29 @@ or
 
 ## ALSO PROXY is on line 5 in the package.lock
 
+```
  "proxy": "http://localhost:8000",
+```
 
 ### `yarn start`
 
 ### ABOUT THE PROJECT
 
-I built the calculator using React, Typescript, WebPack, Nodejs , Express, and MySQL. I also used dotenv, concurrently and styled-components (dev),
+I built the calculator using React, Typescript, WebPack, Nodejs , Express, and MySQL. I also used dotenv, concurrently and styled-components (dev),<br />
 
-I used useState and useEffect to update numbers in the display and useContext to bring in values I needed from the NumberProvider.
+I used useState and useEffect to update numbers in the display and useContext to bring in values I needed from the NumberProvider.<br />
 
-the tserver-tsconfig.ts is just a refrence file I brought in.
+the tserver-tsconfig.ts is just a refrence file I brought in.<br />
 
-I originally had 2 main components of Calculator and CalcList but brought them to gether because NumberProvider wraps the whole project for access to its props and shared methods as well as styling got messed up as well after I had already started.
+I originally had 2 main components of Calculator and CalcList but brought them to gether because NumberProvider wraps the whole project for access to its props and shared methods as well as styling got messed up as well after I had already started.<br />
 
 ### WEBPACK ALIASES
 
-I used webpack to create an alias "components" for sourcing in to the app.jsx. and the exports from the compnents all come from the index.js inside the components folder. abs
+I used webpack to create an alias "components" for sourcing in to the app.jsx. and the exports from the compnents all come from the index.js inside the components folder. <br />
 
-this the code inside the webpack-confiig.js
+this the code inside the webpack-confiig.js<br />
 
+```
 import path from 'path';
 
 module.exports = {
@@ -57,6 +63,7 @@ module.exports = {
     extensions: ['.jsx', '.js', '.scss', '.json'],
   },
 };
+```
 
 Runs the app in the development mode.<br />
 Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
