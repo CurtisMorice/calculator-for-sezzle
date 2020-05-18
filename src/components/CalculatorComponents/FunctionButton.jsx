@@ -10,7 +10,7 @@ const FunctionButton = ({ buttonValue, onClick
       type="button"
       onClick={() => {
         handleSetCalcFunction(buttonValue);
-        onClick();
+        onClick();// boolean check for = button not to disable =equal button before all values are passed
       }
       }
     >

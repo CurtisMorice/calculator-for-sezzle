@@ -1,3 +1,4 @@
+// Component export file
 export { BackButton } from './CalculatorComponents/BackButton';
 export { CalcList } from './CalculatorComponents/CalcList';
 export { Calculator } from './CalculatorComponents/Calculator';

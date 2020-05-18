@@ -15,7 +15,7 @@ export function Calculator() {
   const [numberButtonHasBeenHit, setNumberButtonHasBeenHit] = useState(false);
   const [functionButtonHasBeenHit, setFunctionButtonHasBeenHit] = useState(false)
   const [lastButtonWasFunction, setLastButtonWasFunction] = useState(false);
-
+  // methods to set isValid for EqualButton using state above.
   const handleNumberButtonClick = () => {
     setNumberButtonHasBeenHit(true);
     setLastButtonWasFunction(false);
@@ -27,8 +27,6 @@ export function Calculator() {
   const isValid = () => {
     return numberButtonHasBeenHit && functionButtonHasBeenHit && !lastButtonWasFunction;
   }
-
-  console.log(isValid());
   return (
     <CalculatorStyles>
       <div className="display">

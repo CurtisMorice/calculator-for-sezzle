@@ -2,8 +2,6 @@ import React, { useContext } from "react";
 import { CalcListStyle } from "../styles/Styles";
 import { NumberContext } from './NumberProvider';
 
-
-
 const CalcList = () => {
   const { calculations } = useContext(NumberContext);
 
@@ -13,8 +11,8 @@ const CalcList = () => {
       <ul>
         {calculations.map(item => {
           return (
-            <li key={item.id} style={{ color: '#333', fontSize: '30px' }}>
-              {item.number1} {item.operator} {item.number2} = {item.total}
+            <li key={item.id} style={{ color: '#333', fontSize: '20px' }}>
+              {item.number1} {item.operator} {item.number2} = {item.total}&nbsp; {item.created_at}
             </li>
           );
         })

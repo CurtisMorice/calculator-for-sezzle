@@ -4,9 +4,9 @@ export const NumberContext = React.createContext(0);
 
 export function NumberProvider(props) {
   const [number, setNumber] = useState("");
-  const [storedNumber, setStoredNumber] = useState("");
-  const [functionType, setFunctionType] = useState("");
-  const [calculations, setCalculations] = useState([]);
+  const [storedNumber, setStoredNumber] = useState(""); //sets the numbers used in the calculation
+  const [functionType, setFunctionType] = useState(""); // grabs and sets the operator used for the calculation
+  const [calculations, setCalculations] = useState([]); // sets the object for the database
 
   const handleSetDisplayValue = (num) => {
     if ((!number.includes(".") || num !== ".") && number.length < 8) {
@@ -31,7 +31,7 @@ export function NumberProvider(props) {
       setNumber(deletedNumber);
     }
   };
-
+  // Grabs the operation type and sets it in state for the doMath() below.
   const handleSetCalcFunction = (type) => {
     if (number) {
       setFunctionType(type);
@@ -41,7 +41,7 @@ export function NumberProvider(props) {
       setFunctionType(type);
     }
   };
-
+  // Handles the state of the number from -neg to +pos
   const handleToggleNegative = () => {
     if (number) {
       if (number > 0) {
@@ -57,11 +57,12 @@ export function NumberProvider(props) {
       setStoredNumber(positiveNumber);
     }
   };
-
+  // function for processing equations, for each case I build the calc_obj for the POST thats baked in.
   const doMath = () => {
     let finalNumber;
     let calc_obj;
-    let date = new Date();
+    let d = new Date();
+    let date = d.toUTCString();
     if (number && storedNumber) {
       switch (functionType) {
         case "+":
@@ -87,7 +88,7 @@ export function NumberProvider(props) {
           );
           finalNumber = parseInt(storedNumber) - parseInt(number);
           calc_obj = { number1: parseInt(storedNumber), operator: functionType, number2: parseInt(number), total: finalNumber, created_at: date };
-          console.log(finalNumber);
+          // console.log(finalNumber);
           break;
         case "/":
           setStoredNumber(
@@ -99,7 +100,7 @@ export function NumberProvider(props) {
           );
           finalNumber = parseInt(storedNumber) / parseInt(number);
           calc_obj = { number1: parseInt(storedNumber), operator: functionType, number2: parseInt(number), total: finalNumber, created_at: date };
-          console.log(finalNumber);
+          // console.log(finalNumber);
           break;
         case "*":
           setStoredNumber(
@@ -111,7 +112,7 @@ export function NumberProvider(props) {
           );
           finalNumber = parseInt(storedNumber) * parseInt(number);
           calc_obj = { number1: parseInt(storedNumber), operator: functionType, number2: parseInt(number), total: finalNumber, created_at: date };
-          console.log(finalNumber);
+          // console.log(finalNumber);
           break;
         default:
           break;
@@ -121,7 +122,7 @@ export function NumberProvider(props) {
 
     console.log(calc_obj);
 
-
+    // POST calc_obj to the db and fire getCalculations
     fetch('/api/calculations', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
@@ -133,12 +134,13 @@ export function NumberProvider(props) {
       getCalculations();
       return response.json();
     }).then((data) => {
-      console.log('data', data);
+      // console.log('data', data);
     }).catch((err) => {
       console.log(err)
     });
   };
 
+  //Get Call to populate CalcList
   const getCalculations = async () => {
     console.log("getCalculations()");
     let result = await fetch(`/api/calculations`);
