@@ -2,7 +2,7 @@ import React, { useContext, useEffect, useState } from "react";
 import { CalcListStyle } from "../styles/Styles";
 import { NumberContext } from './NumberProvider';
 import io from 'socket.io-client'
-const socket = io("https://calculator-sezzle.herokuapp.com/");
+const socket = io("/");
 
 const CalcList = () => {
   const { calculations } = useContext(NumberContext);
