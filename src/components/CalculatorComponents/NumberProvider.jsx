@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import io from 'socket.io-client'
-const socket = io("https://calculator-sezzle.herokuapp.com");
+const socket = io('/');
 
 export const NumberContext = React.createContext(0);
 
