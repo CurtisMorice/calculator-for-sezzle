@@ -7,7 +7,7 @@ const bodyParser = require('body-parser');
 const dbConfig = require('../db/db-config'); // us for production
 require('dotenv').config();
 
-const PORT = process.env.PORT || 8000;
+const PORT = process.env.PORT || 'https://calculator-sezzle.herokuapp.com/';
 const http = require('http').Server(app);
 const io = require('socket.io')(http, { transports: ['polling', 'websocket'] });
 
