@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import io from 'socket.io-client'
-const socket = io("http://localhost:8000/");
+const socket = io("https://calculator-sezzle.herokuapp.com/");
 
 export const NumberContext = React.createContext(0);
 
@@ -139,7 +139,6 @@ export function NumberProvider(props) {
       if (response.status >= 400) {
         throw new Error("Bad response from server");
       }
-
       return response.json();
     }).then((data) => {
       socket.emit('calc-passed', data)

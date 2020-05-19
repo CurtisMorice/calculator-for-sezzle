@@ -4,7 +4,7 @@ const express = require('express');
 const table = 'calculations';
 const path = require('path');
 const bodyParser = require('body-parser');
-const dbConfig = require('../db/db-config'); // us for porduction
+const dbConfig = require('../db/db-config'); // us for production
 require('dotenv').config();
 
 const PORT = process.env.PORT || 8000;
@@ -46,7 +46,6 @@ const pool = mysql.createPool({
 // });
 
 // Static Build
-app.use(express.static("build"));
 if (process.env.NODE_ENV === 'production') {
   // Exprees will serve up production assets
   app.use(express.static('build'));
