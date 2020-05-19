@@ -11,8 +11,9 @@ export function NumberProvider(props) {
   const [calculations, setCalculations] = useState([]); // sets the object for the database
 
   useEffect(() => {
+    getCalculations();
     socket.on('calculation-sent', (data) => {
-      getCalculations(data)
+      getCalculations();
     });
   }, [calculations]);
 
