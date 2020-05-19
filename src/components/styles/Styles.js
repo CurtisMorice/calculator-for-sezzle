@@ -12,7 +12,7 @@ grid-template-columns: 1fr;
   border: 10px solid azure;
   padding: 10px;
   border-radius: 10px;
-  @media (max-width: 800px) {
+  @media (max-width: 900px) {
     margin: 20px;
     flex-direction: column;
     justify-items: initial;
@@ -22,7 +22,7 @@ grid-template-columns: 1fr;
   display: flex;
   justify-content: center;
   align-items: center;
- @media (max-width: 800px) {
+ @media (max-width: 900px) {
   flex-direction: column;
   padding-bottom: 50px;
  }
@@ -32,7 +32,7 @@ grid-template-columns: 1fr;
   margin: 0 !important;
   width: 100%;
 
-  @media (max-width: 500px) {
+  @media (max-width: 800px) {
     width: 90%;
     max-height: 275px;
   }
@@ -54,14 +54,19 @@ grid-template-columns: 1fr;
   grid-gap: 10px;
   grid-template-columns: repeat(4, 1fr);
   padding: 10px;
-  width: 500px;
+  width: 450px;
   margin: 0 auto;
-
-  @media (max-width: 500px) {
-    width: 100%;
+  @media (max-width: 900px) {
+    width: 400px;
     margin: 0;
     padding: 0;
-    grid-gap: 15px;
+    height: 400px;
+  }
+  @media (max-width: 500px) {
+    width: 300px;
+    margin: 0;
+    padding: 0;
+    height:300px
   }
 
   button {
@@ -83,9 +88,13 @@ grid-template-columns: 1fr;
       border: 3px solid #dfe6e9;
       font-weight: 500;
     }
+    @media (max-width: 800px) {
+      height: 60px;
+      font-size: 2rem;
+    }
     @media (max-width: 500px) {
-      height: 70px;
-      font-size: 2.5rem;
+      height: 45px;
+      font-size: 1.5rem;
     }
 
   button.function-button {
@@ -132,7 +141,7 @@ h2 {
   font-size: 2.5rem;
   margin: 0;
   text-align: center;
-  border-bottom: 4px solid white;
+  border-bottom: 4px solid #34558a;
   padding: 15px 20px;
 
   @media (max-width: 500px) {
@@ -146,7 +155,7 @@ h2.long-main-display {
 }
 
 p {
-  margin: 5px 0;
+  padding-top: 10px;
   font-size: 1.3rem;
 
   @media (max-width: 500px) {
@@ -160,13 +169,14 @@ p.long-stored-display {
 
 `
 export const CalcListStyle = styled.div`
+text-align: center;
 border: 4px solid white;
 max-width: 450px;
 margin: 10px 20px;
 align-items: center;
 border-radius: 20px;
 background: azure;
-width: 450px;
+width: 425px;
 height: 500px;
 @media (max-width: 500px) {
   width : 90%;
@@ -174,9 +184,14 @@ height: 500px;
   flex-direction: column;
   margin: 10px;
 }
-h1 {
-  width: 100%;
+ul {padding-inline-start: 0px !important;}
+li {
+  border: 2px solid #34558a;
+  border-radius: 10px;
+  padding: 5px;
+  margin: 10px;
   text-align: center;
+  list-style: none;
 }
 `
   ;

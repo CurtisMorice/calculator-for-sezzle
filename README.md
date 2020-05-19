@@ -1,5 +1,7 @@
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
+# This project was made with Reactjs, Nodejs, WebPack, Express, MySQL, Heroku w/ClearDB and love
+
 ### My start command was:
  npx create-react-app calculator-sezzle <br />
  npm add concurrently dotenv express mysql nodemon webpack<br />
@@ -20,8 +22,7 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 ### UP AND RUNNING
 
-## HEROKU
-With HEROKU I am using ClearDB MySQL for database config.<br />
+## CREATING DATABASE
 
 Set up a TABLE with the name "calulations" and the COLUMNS should be number1, operator, number2, total, and created_at. or C & P into a workbench with : <br />
 
@@ -46,11 +47,8 @@ OK , so I used concurrently ( a package for running start & server "concurrently
 
 ### npm run dev
 
-or
 
-### npm run dev
-
-## ALSO PROXY is on line 5 in the package.lock
+## PROXY in the package.lock (l.5) (change port as needed)
 
 ```
  "proxy": "http://localhost:8000",
@@ -58,13 +56,12 @@ or
 
 ### ABOUT THE PROJECT
 
-I built the calculator using React, Typescript, WebPack, Nodejs , Express, and MySQL. I also used dotenv, concurrently and styled-components (dev),<br />
+I built the calculator using React, Typescript, WebPack, Nodejs , Express, and MySQL. I also used dotenv, concurrently and styled-components, webpack, socket.io, and http (dev),<br />
 
 I used useState and useEffect to update numbers in the display and useContext to bring in values I needed from the NumberProvider.<br />
+socket.io and socket.io-client were used for the websocket used for real time rendering.<br/>
 
-the tserver-tsconfig.ts is just a refrence file I brought in.<br />
-
-I originally had 2 main components of Calculator and CalcList but brought them to gether because NumberProvider wraps the whole project for access to its props and shared methods as well as styling got messed up as well after I had already started.<br />
+I originally had 2 main components of Calculator and CalcList but brought them to gether because NumberProvider wraps the whole project for access to its props and shared methods.<br />
 
 ### WEBPACK ALIASES
 
@@ -72,18 +69,7 @@ I used webpack to create an alias "components" for sourcing in to the app.jsx. a
 
 this the code inside the webpack-confiig.js<br />
 
-```
-import path from 'path';
-
-module.exports = {
-  resolve: {
-    alias: {
-      'components': path.resolve(__dirname, 'src/components'),
-    },
-    extensions: ['.jsx', '.js', '.scss', '.json'],
-  },
-};
-```
+### `npm run dev`
 
 Runs the app in the development mode.<br />
 Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
