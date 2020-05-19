@@ -150,7 +150,7 @@ export function NumberProvider(props) {
   // socket.emit('calc-passed', data)
   //Get Call to populate CalcList
   const getCalculations = async () => {
-    let result = await fetch('/calculations');
+    let result = await fetch('api/calculations');
     let calc_obj = await result.json();
     setCalculations(calc_obj);
   }
