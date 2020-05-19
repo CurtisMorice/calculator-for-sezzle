@@ -1,11 +1,13 @@
 const app = require('express')();
 const mysql = require('mysql');
+const express = require('express');
 const table = 'calculations';
+const path = require('path');
 const bodyParser = require('body-parser');
 const dbConfig = require('../db/db-config'); // us for porduction
 require('dotenv').config();
 
-const PORT = process.env.PORT || 3306;
+const PORT = process.env.PORT || 8000;
 const http = require('http').Server(app);
 const io = require('socket.io')(http, { transports: ['polling', 'websocket'] });
 
@@ -44,7 +46,17 @@ const pool = mysql.createPool({
 // });
 
 // Static Build
-// app.use(app.static("build"));
+app.use(express.static("build"));
+if (process.env.NODE_ENV === 'production') {
+  // Exprees will serve up production assets
+  app.use(app.static('client/build'));
+
+  // Express serve up index.html file if it doesn't recognize route
+
+  app.get('*', (req, res) => {
+    res.sendFile(path.resolve(__dirname, 'client', 'build', 'index.html'));
+  });
+}
 
 app.get('/api/calculations', (req, res) => {
 
