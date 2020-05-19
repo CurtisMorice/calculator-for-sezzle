@@ -21,7 +21,7 @@ const CalcList = () => {
       <ul>
         {calculations.map(item => {
           return (
-            <li key={item.id} style={{ color: '#333', fontSize: '20px' }} >
+            <li key={item.id}>
               {item.number1} {item.operator} {item.number2} = { item.total} @ {item.created_at}
             </li>
           );
