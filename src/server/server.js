@@ -5,7 +5,7 @@ const bodyParser = require('body-parser');
 const dbConfig = require('../db/db-config'); // us for porduction
 require('dotenv').config();
 
-const PORT = process.env.PORT || 8000;
+const PORT = process.env.PORT || 3306;
 const http = require('http').Server(app);
 const io = require('socket.io')(http, { transports: ['polling', 'websocket'] });
 
