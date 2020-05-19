@@ -136,13 +136,13 @@ export function NumberProvider(props) {
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(calc_obj)
     }).then((response) => {
-      socket.emit('calc-passed', response)
+      // socket.emit('calc-passed', response)
       if (response.status >= 400) {
         throw new Error("Bad response from server");
       }
       return response.json();
     }).then((data) => {
-      socket.emit('calc-passed', data)
+      // socket.emit('calc-passed', data)
     }).catch((err) => {
       console.log(err)
     });
