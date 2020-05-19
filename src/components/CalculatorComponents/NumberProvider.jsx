@@ -1,12 +1,20 @@
-import React, { useState } from "react";
-export const NumberContext = React.createContext(0);
+import React, { useState, useEffect } from "react";
+import io from 'socket.io-client'
+const socket = io("http://localhost:8000/");
 
+export const NumberContext = React.createContext(0);
 
 export function NumberProvider(props) {
   const [number, setNumber] = useState("");
   const [storedNumber, setStoredNumber] = useState(""); //sets the numbers used in the calculation
   const [functionType, setFunctionType] = useState(""); // grabs and sets the operator used for the calculation
   const [calculations, setCalculations] = useState([]); // sets the object for the database
+
+  useEffect(() => {
+    socket.on('calculation-sent', (data) => {
+      getCalculations(data)
+    });
+  }, [calculations]);
 
   const handleSetDisplayValue = (num) => {
     if ((!number.includes(".") || num !== ".") && number.length < 8) {
@@ -57,7 +65,6 @@ export function NumberProvider(props) {
       setStoredNumber(positiveNumber);
     }
   };
-  // function for processing equations, for each case I build the calc_obj for the POST thats baked in.
   const doMath = () => {
     let finalNumber;
     let calc_obj;
@@ -128,25 +135,24 @@ export function NumberProvider(props) {
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(calc_obj)
     }).then((response) => {
+      socket.emit('calc-passed', response)
       if (response.status >= 400) {
         throw new Error("Bad response from server");
       }
-      getCalculations();
+
       return response.json();
     }).then((data) => {
-      // console.log('data', data);
+      socket.emit('calc-passed', data)
     }).catch((err) => {
       console.log(err)
     });
   };
 
+
   //Get Call to populate CalcList
   const getCalculations = async () => {
-    console.log("getCalculations()");
     let result = await fetch(`/api/calculations`);
-    console.log("getCalculations()");
     let calc_obj = await result.json();
-    console.log("CAlc_obj", calc_obj, 2);
     setCalculations(calc_obj);
   }
 

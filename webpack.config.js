@@ -7,4 +7,7 @@ module.exports = {
     },
     extensions: ['.jsx', '.js', '.scss', '.json'],
   },
+  externals: {
+    uws: 'uws'
+  },
 };

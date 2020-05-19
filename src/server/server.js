@@ -1,12 +1,30 @@
-const express = require('express');
+const app = require('express')();
 const mysql = require('mysql');
+const table = 'calculations';
 const bodyParser = require('body-parser');
-// const path = require('path');
-const dbConfig = require('../db/db-config');
+const dbConfig = require('../db/db-config'); // us for porduction
 require('dotenv').config();
 
-const app = express();
-const table = 'calculations';
+const PORT = process.env.PORT || 8000;
+const http = require('http').Server(app);
+const io = require('socket.io')(http, { transports: ['polling', 'websocket'] });
+
+http.listen(PORT, () => {
+  console.log('listening on port ')
+})
+
+var cors = require('cors');
+app.use(cors())
+
+// socket connection
+io.on("connection", (socket) => {
+  console.log("IO connected");
+  socket.on("calc-passed", (data) => {
+    console.log("calc-passed", data);
+    io.emit('calculation-sent', data);
+  });
+});
+
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -25,18 +43,11 @@ const pool = mysql.createPool({
 //   database: process.env.MYSQL_DB
 // });
 
-
-// if (process.env.NODE_ENV === "production") {
-//
-
-//   app.get("*", (req, res) => {
-//     res.sendFile(path.resolve(__dirname, "build", "index.html"));
-//   });
-// }
 // Static Build
-app.use(express.static("build"));
+// app.use(app.static("build"));
 
 app.get('/api/calculations', (req, res) => {
+
   pool.query(`SELECT * FROM ${ table } ORDER BY created_at DESC LIMIT 10`, (err, rows) => {
     if (err) {
       res.send(err);
@@ -56,8 +67,4 @@ app.post('/api/calculations', (req, res) => {
     if (error) throw error;
     res.send(JSON.stringify(result));
   });
-});
-const PORT = process.env.PORT || 8000;
-app.listen(PORT, () => {
-  console.log(`App server listening to port ${ PORT }`);
 });
