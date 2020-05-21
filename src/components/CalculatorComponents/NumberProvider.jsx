@@ -70,7 +70,7 @@ export function NumberProvider(props) {
     let finalNumber;
     let calc_obj;
     let d = new Date();
-    let date = d.toLocaleTimeString('en-US');
+    let date = d.getUTCHours();
     console.log(date)
     if (number && storedNumber) {
       switch (functionType) {
