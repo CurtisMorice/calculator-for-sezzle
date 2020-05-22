@@ -72,10 +72,10 @@ grid-template-columns: 1fr;
   button {
     cursor: pointer;
     width: 100%;
-    height: 80px;
+    height: 85px;
     border-radius: 20px;
     border: 3px solid white;
-    font-size: 2rem;
+    font-size: 1.6rem;
     color: #333;
     font-family: 'Orbitron', serif;
     background: azure;
@@ -90,11 +90,10 @@ grid-template-columns: 1fr;
     }
     @media (max-width: 900px) {
       height: 60px;
-      font-size: 2rem;
     }
     @media (max-width: 500px) {
       height: 45px;
-      font-size: 1.5rem;
+      font-size: 1.25rem;
     }
 
   button.function-button {
@@ -177,7 +176,7 @@ align-items: center;
 border-radius: 20px;
 background: azure;
 width: 425px;
-height: 500px;
+max-height: 1000px;
 @media (max-width: 500px) {
   width : 90%;
   display: flex;
@@ -192,7 +191,7 @@ li {
   margin: 10px;
   text-align: center;
   list-style: none;
-  font-size: 1.75rem;
+  font-size: 1.5rem;
   @media (max-width: 500px) {
     font-size: 1.25rem;
   }
