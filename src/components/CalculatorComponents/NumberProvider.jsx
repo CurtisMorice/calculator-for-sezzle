@@ -69,8 +69,8 @@ export function NumberProvider(props) {
   const doMath = () => {
     let finalNumber;
     let calc_obj;
-    let d = new Date();
-    let date = d.getUTCHours();
+    let date = new Date();
+    // let date = d.getUTCDate();
     console.log(date)
     if (number && storedNumber) {
       switch (functionType) {
